@@ -2,29 +2,26 @@
 
 package program
 
-
 import "math"
 
 type BST struct {
-	value int 
+	value int
 
-
-	left *BST
+	left  *BST
 	right *BST
 }
-
 
 func (tree *BST) FindClosestValue(target int) int {
 	return tree.findClosestValue(target, math.MaxInt32)
 }
 
-func (tree * BST) findClosestValue(target, closest int) int {
-	if absdiff(target, closest) > absdiff(target, tree,value){
+func (tree *BST) findClosestValue(target, closest int) int {
+	if absdiff(target, closest) > absdiff(target, tree.value) {
 		closest = tree.value
 	}
 	if target < tree.value && tree.left != nil {
 		return tree.left.findClosestValue(target, closest)
-	} else if target > tree.value  && tree.right != nil {
+	} else if target > tree.value && tree.right != nil {
 		return tree.right.findClosestValue(target, closest)
 	}
 	return closest
